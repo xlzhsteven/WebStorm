@@ -7,14 +7,19 @@ var lighthouseRock = {
     weaponBulbs: superBlinders,
     capacity: 30,
     secretPassageTo: "Underwater Outpost",
-    numRangers: 0
+    numRangers: 3,
+    ranger1: {name: "Nick Walsh", skillz: "magnification burn", station: 2},
+    ranger2: {name: "Drew Barontini", skillz: "uppercut launch", station: 3},
+    ranger3: {name: "Christine Wong", skillz: "bomb defusing", station: 1}
 };
-function addRanger(location, name, skillz, station){
-    location.numRangers++;
-    location["ranger" + location.numRangers] = {name: name, skillz: skillz, station: station};
+function dontPanic (location){
+    var list = "";
+    for(var i = 1; i<=location.numRangers; i++){
+        list = list + location["ranger" + i].name + ", man the " +
+            location.weaponBulbs[location["ranger"+i].station-1][0] +
+            "!\n";
+    }
+    alert("Avast, me hearties!\n" +
+        "There be Pirates nearby! Stations!\n" + list);
 }
-
-addRanger(lighthouseRock, "Nick Walsh", "magnification burn", 2);
-addRanger(lighthouseRock, "Drew Barontini", "uppercut launch", 3);
-addRanger(lighthouseRock, "Christine Wong", "bomb defusing", 1);
-console.log(lighthouseRock);
+dontPanic(lighthouseRock);
