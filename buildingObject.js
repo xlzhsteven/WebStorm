@@ -18,6 +18,11 @@ var lighthouseRock = {
             skillz: skillz,
             station: station
         };
+    },
+    addBulb: function (name, wattage){
+        var newarray = [name, wattage];
+        this.weaponBulbs.push(newarray);
     }
 };
-lighthouseRock.addRanger("Jordan Wade", "dual-wield hand crossbow", 4);
+lighthouseRock.addBulb("Sample Bulb", "Infinity");
+console.log(lighthouseRock.weaponBulbs);
