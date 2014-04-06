@@ -10,7 +10,9 @@ var rockSpearguns = {
 };
 
 function listGuns(guns){
-    for (speargun in guns){
-        console.log(speargun);
+    for(speargun in guns){
+        console.log("Behold! " + speargun + ", with " + guns[speargun]["heft"] + " heft!");
     }
 }
+
+listGuns(rockSpearguns);
