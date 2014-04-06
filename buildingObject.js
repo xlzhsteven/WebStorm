@@ -1,27 +1,31 @@
 /**
  * Created by Xiaolong on 4/1/14.
  */
-var superBlinders = [ ["Firestorm", 4000], ["Solar Death Ray", 6000], ["Supernova", 12000] ];
-var lighthouseRock = {
-    gateClosed: true,
-    weaponBulbs: superBlinders,
-    capacity: 30,
-    secretPassageTo: "Underwater Outpost",
-    numRangers: 3,
-    ranger1: {name: "Nick Walsh", skillz: "magnification burn", station: 2},
-    ranger2: {name: "Drew Barontini", skillz: "uppercut launch", station: 3},
-    ranger3: {name: "Christine Wong", skillz: "bomb defusing", station: 1},
-    addRanger: function (name, skillz, station){
-        this.numRangers++;
-        this["ranger" + this.numRangers] = {
-            name: name,
-            skillz: skillz,
-            station: station
-        };
-    },
-    addBulb: function (name, wattage){
-        this.weaponBulbs.push([name, wattage]);
-    }
+var vehicle3 = {
+    type: "Submarine", capacity: 8, storedAt: "Underwater Outpost",
+    ranger1: { name: "Gregg Pollack", skillz: "Lasering", dayOff: "Friday"},
+    ranger2: { name: "Bijan Boustani", skillz: "Roundhouse Kicks", dayOff: "Tuesday"},
+    ranger3: { name: "Ashley Smith", skillz: "Torpedoing", dayOff: "Friday"},
+    ranger4: { name: "Mark Krupinski", skillz: "Sniping", dayOff: "Wednesday"},
+    numRangers: 4
 };
-lighthouseRock.addBulb("Sample Bulb", "Infinity");
-console.log(lighthouseRock.weaponBulbs);
+
+function relieveDuty (vehicle, day){
+    var offDuty = [];
+    var onDuty = [];
+    for(var i = 1; i <= vehicle["numRangers"]; i++){
+        if(vehicle["ranger"+i]["dayOff"]===day){
+            offDuty.push(vehicle["ranger"+i]);
+            vehicle["numRangers"] -= 1;
+        } else{
+            onDuty.push(vehicle["ranger"+i]);
+        }
+        delete vehicle["ranger"+i];
+    }
+    for(var j = 1; j <= onDuty.length; j++){
+        vehicle["ranger"+j] = onDuty[j-1];
+    }
+    return offDuty;
+}
+
+var offToday = relieveDuty(vehicle3, "Friday");
