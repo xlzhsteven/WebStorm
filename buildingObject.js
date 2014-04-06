@@ -20,8 +20,7 @@ var lighthouseRock = {
         };
     },
     addBulb: function (name, wattage){
-        var newarray = [name, wattage];
-        this.weaponBulbs.push(newarray);
+        this.weaponBulbs.push([name, wattage]);
     }
 };
 lighthouseRock.addBulb("Sample Bulb", "Infinity");
