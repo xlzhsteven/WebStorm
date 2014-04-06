@@ -10,9 +10,14 @@ var lighthouseRock = {
     numRangers: 3,
     ranger1: {name: "Nick Walsh", skillz: "magnification burn", station: 2},
     ranger2: {name: "Drew Barontini", skillz: "uppercut launch", station: 3},
-    ranger3: {name: "Christine Wong", skillz: "bomb defusing", station: 1}
-    addRanger: function(name, skillz, station){
+    ranger3: {name: "Christine Wong", skillz: "bomb defusing", station: 1},
+    addRanger: function (name, skillz, station){
         this.numRangers++;
-        this["ranger" + this.numRangers] = {name: name, skillz: skillz, station: station};
+        this["ranger" + this.numRangers] = {
+            name: name,
+            skillz: skillz,
+            station: station
+        };
     }
 };
+lighthouseRock.addRanger("Jordan Wade", "dual-wield hand crossbow", 4);
