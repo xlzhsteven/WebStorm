@@ -8,11 +8,13 @@ var rockSpearguns = {
     Firefork: {barbs: 6, weight: 8, heft: "overhand"},
     "The Impaler": {barbs: 1, weight: 30, heft: "chest"}
 };
-
-function listGuns(guns){
-    for(speargun in guns){
-        console.log("Behold! " + speargun + ", with " + guns[speargun]["heft"] + " heft!");
+rockSpearguns["listGuns"] = function ( ){
+    for(var property in this){
+        if(this[property]["heft"] != undefined){
+            console.log("Behold! " + property +
+                ", with " + this[property]["heft"] +
+                " heft!");
+        }
     }
-}
-
-listGuns(rockSpearguns);
+};
+rockSpearguns["listGuns"]();
