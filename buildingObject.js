@@ -2,20 +2,27 @@
  * Created by Xiaolong on 4/1/14.
  */
 function Fencepost (x, y, postNum){
-    this.x = 0;
-    this.y = 0;
-    this.postNum = undefined;
+    this.x = x;
+    this.y = y;
+    this.postNum = postNum;
     this.connectionsTo = [];
-    this.sendRopeTo = function(connectedPost){
-        this.connectionsTo.push(connectedPost);
-    };
 }
 
-var post18 = new Fencepost(-3, 4, 18);
-var post19 = new Fencepost(5, -1, 19);
-var post20 = new Fencepost(-2, 10, 20);
-
-post18.sendRopeTo(post20);
-post20.sendRopeTo(post18);
-post18.sendRopeTo(post19);
-post19.sendRopeTo(post18);
+Fencepost.prototype = {
+    sendRopeTo: function(connectedPost){
+        this.connectionsTo.push(connectedPost);
+    },
+    removeRope: function(removeTo){
+        var temp = [];
+        for(var i = 0; i<this.connectionsTo.length; i++){
+            if(this.connectionsTo[i].postNum != removeTo){
+                temp.push(this.connectionsTo[i]);
+            }
+        }
+        this.connectionsTo = temp;
+    },
+    movePost: function(x, y){
+        this.x = x;
+        this.y = y;
+    }
+};
